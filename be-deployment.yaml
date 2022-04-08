@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cs590-final-be
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: beApp
+    spec:
+      containers:
+      - name: backend-container
+        image: ssimonyen/590-be:040522a
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8082
+        env:
+        - name: PORT
+          value: "8082"
+        - name: FRONTEND_ENDPOINT
+          value: "http://127.0.0.1:3000"
+  selector:
+    matchLabels:
+      app: beApp

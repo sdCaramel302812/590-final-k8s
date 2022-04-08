@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cs590-final-fe
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: feApp
+    spec:
+      containers:
+      - name: frontend-container
+        image: ssimonyen/590-fe:040522a
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
+        env:
+        - name: REACT_APP_BACKEND_ENDPOINT
+          value: "http://127.0.0.1:8082"
+  selector:
+    matchLabels:
+      app: feApp
