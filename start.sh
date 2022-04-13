@@ -25,9 +25,12 @@ fi
 
 minikube start
 
-kubectl apply -f be-deployment.yaml
+envsubst < be-deployment.yaml | kubectl apply -f -
+#kubectl apply -f be-deployment.yaml
 kubectl apply -f fe-deployment.yaml
 kubectl apply -f be-service.yaml
 kubectl apply -f fe-service.yaml
+
+kubectl create namespace logging
 
 kubectl get service

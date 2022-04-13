@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: backend-container
-        image: ssimonyen/590-be:040522a
+        image: ssimonyen/590-be:041122b
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8082
@@ -20,6 +20,10 @@ spec:
           value: "8082"
         - name: FRONTEND_ENDPOINT
           value: "http://127.0.0.1:3000"
+        - name: AWS_ACCESS_KEY_ID
+          value: $AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          value: $AWS_SECRET_ACCESS_KEY
   selector:
     matchLabels:
       app: beApp
